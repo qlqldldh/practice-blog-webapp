@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { postType } from '../types/post';
-import { getList } from '../utils/axiosUtils';
+import { postType } from '../../types/post';
+import { getList } from '../../utils/axiosUtils';
+import PostListCardList from './CardList';
 
 const PostList: FunctionComponent = () => {
     const [ posts, setPosts ] = useState<postType[]>([]);
@@ -17,11 +18,10 @@ const PostList: FunctionComponent = () => {
         };
         getInitData();
     }, []);
-    console.log(posts);
 
     return (
         <>
-            {posts.map(post => <div>{post.title}</div>)}
+            {posts.length === 0 ? 'empty' : <PostListCardList posts={posts} />}
         </>
     );
 };
