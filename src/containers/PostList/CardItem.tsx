@@ -1,6 +1,7 @@
-import { createStyles, Grid, makeStyles } from '@material-ui/core';
+import { createStyles, Divider, Grid, makeStyles } from '@material-ui/core';
 import React, { FunctionComponent } from 'react';
 import { postType } from '../../types/post';
+import Link from 'next/link';
 
 type ItemProp = {
     post: postType,
@@ -9,23 +10,35 @@ type ItemProp = {
 const useStyles = makeStyles(() =>
     createStyles({
         gridCont: {
-            marginBottom: 10,
+            marginBottom: 30,
+            marginTop: 60,
         },
+        divider: {
+            marginTop:20,
+        }
     }),
 );
 
-const PostListCardItem: FunctionComponent<ItemProp> = ({post}) => {
+const PostListCardItem: FunctionComponent<ItemProp> = ({ post }) => {
     const classes = useStyles();
+
+    const {
+        id,
+        title,
+        createdAt,
+    } = post;
 
     return (
         <Grid container={true} className={classes.gridCont}>
-            <Grid item={true} md={12}><hr /></Grid>
             <Grid item={true} md={12}>
-                <h3>{post.title}</h3>
+                <Link href={`/posts/${id}`}>
+                    <h1>{title}</h1>
+                </Link>
             </Grid>
             <Grid item={true} md={12}>
-                {post.createdAt}
+                {createdAt}
             </Grid>
+            <Grid item={true} md={12} className={classes.divider}><Divider light={true} /></Grid>
         </Grid>
     );
 };

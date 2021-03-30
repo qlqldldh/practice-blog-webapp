@@ -1,10 +1,9 @@
 import { toCamelCaseKeys } from './objectUtils';
 import axios from "axios";
-import { ContactlessOutlined } from '@material-ui/icons';
 
 export const fetchData = async (url: string, params?: any) => {
     const fullUrl = 'http://localhost:8000' + url;
-
+    console.log(fullUrl);
     const response = await axios.get(fullUrl, params)
                                 .then(response => response);
 

@@ -11,7 +11,6 @@ const PostListCardList: FunctionComponent<ListProp> = ({posts}) => {
     return (
         <>
             {posts.map((post: postType) => <PostListCardItem post={post} />)}
-            {/* <div>Hello World</div> */}
         </>
     );
 };

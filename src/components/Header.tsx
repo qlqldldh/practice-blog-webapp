@@ -4,11 +4,14 @@ import React, { FunctionComponent } from 'react';
 const useStyles = makeStyles(() =>
     createStyles({
         gridContainer: {
-            marginLeft: 10,
-            marginRight: 10,
+            paddingLeft: 10,
+            paddingRight: 10,
+            marginBottom: 60,
+            border: 'solid 1px',
         },
         gridItem: {
             textAlign: 'right',
+            paddingTop: 20,
         },
     }),
 );
@@ -20,10 +23,10 @@ const Header: FunctionComponent = () => {
         <Grid container={true} className={classes.gridContainer}>
             <Grid item={true} md={8}>
                 <h1>Dean's Blog</h1>
+                <h3>Posts about what I learned, studied, etc.</h3>
             </Grid>
             <Grid item={true} md={4} className={classes.gridItem}>
                 <Box display='flex' flexDirection="column">
-                    <Box height="40px"/>
                     <Box display="flex" flexDirection="row">
                         <Box flexGrow={1} mx={3}>
                             <Typography variant={'h6'}>Posts</Typography>
