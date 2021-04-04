@@ -1,4 +1,5 @@
-import { Box, createStyles, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Box, createStyles, Grid, Link, makeStyles, Typography } from '@material-ui/core';
+import { useRouter } from 'next/router';
 import React, { FunctionComponent } from 'react';
 
 const useStyles = makeStyles(() =>
@@ -6,7 +7,7 @@ const useStyles = makeStyles(() =>
         gridContainer: {
             paddingLeft: 10,
             paddingRight: 10,
-            marginBottom: 60,
+            marginBottom: 10,
             border: 'solid 1px',
         },
         gridItem: {
@@ -17,7 +18,12 @@ const useStyles = makeStyles(() =>
 );
 
 const Header: FunctionComponent = () => {
+    const router =useRouter();
     const classes = useStyles();
+
+    const handlePostsClick = () => {
+        router.push('/posts');
+    };
 
     return (
         <Grid container={true} className={classes.gridContainer}>
@@ -29,7 +35,9 @@ const Header: FunctionComponent = () => {
                 <Box display='flex' flexDirection="column">
                     <Box display="flex" flexDirection="row">
                         <Box flexGrow={1} mx={3}>
-                            <Typography variant={'h6'}>Posts</Typography>
+                            <Link onClick={handlePostsClick} color="inherit">
+                                <Typography variant={'h6'}>Posts</Typography>
+                            </Link>
                         </Box>
                         <Box mx={3}>
                             <Typography variant={'h6'}>About</Typography>

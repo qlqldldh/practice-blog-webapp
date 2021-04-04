@@ -1,7 +1,9 @@
 import { createStyles, Divider, Grid, makeStyles } from '@material-ui/core';
 import React, { FunctionComponent } from 'react';
 import { postType } from '../../types/post';
-import Link from 'next/link';
+// import Link from 'next/link';
+import Link from '@material-ui/core/Link';
+import { useRouter } from 'next/router';
 
 type ItemProp = {
     post: postType,
@@ -21,17 +23,21 @@ const useStyles = makeStyles(() =>
 
 const PostListCardItem: FunctionComponent<ItemProp> = ({ post }) => {
     const classes = useStyles();
-
+    const router = useRouter();
     const {
         id,
         title,
         createdAt,
     } = post;
 
+    const handleTitleClick = () => {
+        router.push(`/posts/${id}`);
+    };
+
     return (
         <Grid container={true} className={classes.gridCont}>
             <Grid item={true} md={12}>
-                <Link href={`/posts/${id}`}>
+                <Link onClick={handleTitleClick} color="inherit">
                     <h1>{title}</h1>
                 </Link>
             </Grid>
