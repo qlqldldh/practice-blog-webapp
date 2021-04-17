@@ -31,7 +31,7 @@ export const addNewItem = async (url: string, item: any) => {
     return response;
 }
 
-export const deleteItem = async (url: string, id: int) => {
+export const deleteItem = async (url: string, id: number) => {
     const fullUrl = `http://localhost:8000${url}/${id}`;
     const response = await axios.delete(fullUrl);
 
