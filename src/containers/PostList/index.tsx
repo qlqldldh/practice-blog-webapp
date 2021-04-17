@@ -1,4 +1,5 @@
 import { Box, Button, createStyles, makeStyles } from '@material-ui/core';
+import { useRouter } from 'next/router';
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { postType } from '../../types/post';
 import { getList } from '../../utils/axiosUtils';
@@ -14,6 +15,7 @@ const useStyles = makeStyles(() =>
 );
 
 const PostList: FunctionComponent = () => {
+    const router = useRouter();
     const classes = useStyles();
     const [ posts, setPosts ] = useState<postType[]>([]);
 
@@ -30,10 +32,14 @@ const PostList: FunctionComponent = () => {
         getInitData();
     }, []);
 
+    const handleAddButtonClick = () => {
+        router.push('/posts/new');
+    };
+
     return (
         <>
             <Box className={classes.boxStyle}>
-                <Button color="primary">Add New Post</Button>
+                <Button color="primary" onClick={handleAddButtonClick}>Add New Post</Button>
             </Box>
             {posts.length === 0 ? 'empty' : <PostListCardList posts={posts} />}
         </>

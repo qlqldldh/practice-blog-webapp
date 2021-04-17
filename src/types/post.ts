@@ -4,3 +4,8 @@ export interface postType {
     content: string,
     createdAt: string,
 }
+
+export interface postCreateType {
+    title: string,
+    content: string,
+}

@@ -2,6 +2,7 @@ import { Button, createStyles, Grid, makeStyles, Typography } from '@material-ui
 import { useRouter } from 'next/router';
 import React, { FunctionComponent } from 'react';
 import { postType } from '../../types/post';
+import { deleteItem } from '../../utils/axiosUtils';
 
 type Prop = {
     post: postType,
@@ -12,6 +13,7 @@ const postDetailStyles = makeStyles(() =>
         btnGridStyle: {
             textAlign: 'right',
             marginTop: 100,
+            marginBottom: 100,
         },
         btnStyle: {
             marginRight: 10,
@@ -20,6 +22,9 @@ const postDetailStyles = makeStyles(() =>
             marginTop: 120,
             whiteSpace: 'pre-wrap',
             wordWrap: 'break-word',
+        },
+        titleGridStyle: {
+            marginTop: 50,
         },
     }),
 );
@@ -33,19 +38,24 @@ const PostDetail: FunctionComponent<Prop> = ({ post }) => {
         content,
     } = post;
 
-    const handleOtherPostsButtonClick = () => {
+    const handleOtherPostsClick = () => {
         router.push('/posts');
     };
 
-    const handleModifyButtonClick = () => {
-        // router.push('/posts/edit');
-    }
+    const handleDeleteClick = async () => {
+        const response = await deleteItem('/posts', id);
+        if (response.status === 200) {
+            router.push('/posts');
+        } else {
+            alert('Error');
+        }
+    };
 
     const classes = postDetailStyles();
 
     return (
         <Grid container={true}>
-            <Grid item={true} md={12}>
+            <Grid item={true} md={12} className={classes.titleGridStyle}>
                 <Typography variant="h2">{title}</Typography><br />
                 {createdAt}
             </Grid>
@@ -53,9 +63,9 @@ const PostDetail: FunctionComponent<Prop> = ({ post }) => {
                 <Typography variant="h5">{content}</Typography>
             </Grid>
             <Grid item={true} md={12} className={classes.btnGridStyle}>
-                <Button color="default" variant="contained" className={classes.btnStyle} onClick={handleOtherPostsButtonClick}>Other Posts..</Button>
-                <Button color="primary" variant="contained" className={classes.btnStyle}>Modify</Button>
-                <Button disabled variant="contained" className={classes.btnStyle}>Delete</Button>
+                <Button color="default" variant="contained" className={classes.btnStyle} onClick={handleOtherPostsClick}>Other Posts..</Button>
+                <Button disabled variant="contained" className={classes.btnStyle}>Modify</Button>
+                <Button color="secondary" variant="contained" className={classes.btnStyle} onClick={handleDeleteClick}>Delete</Button>
             </Grid>
         </Grid>
     );

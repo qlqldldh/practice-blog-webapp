@@ -21,3 +21,19 @@ export const getList = async (url: string, params?: any) => {
 
     return { data: data.map((item: any) => toCamelCaseKeys(item)), status };
 }
+
+export const addNewItem = async (url: string, item: any) => {
+    const fullUrl = 'http://localhost:8000' + url;
+    const response = await axios.post(fullUrl, item)
+                            .then(response => response)
+                            .catch(error => error.response);
+
+    return response;
+}
+
+export const deleteItem = async (url: string, id: int) => {
+    const fullUrl = `http://localhost:8000${url}/${id}`;
+    const response = await axios.delete(fullUrl);
+
+    return response;
+}
