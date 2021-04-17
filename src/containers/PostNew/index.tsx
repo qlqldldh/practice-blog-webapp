@@ -1,40 +1,13 @@
 import { Button, Grid, TextareaAutosize, TextField, Typography } from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { useRouter } from 'next/router';
 import React, { FunctionComponent, useState } from 'react';
+import { postNewStyles } from '../../styles/pages/postNew';
 import { postCreateType } from '../../types/post';
 import { addNewItem } from '../../utils/axiosUtils';
 
-const useStyles = makeStyles(() =>
-    createStyles({
-        textAreaStyle: {
-            height: 1000,
-            padding: 30,
-        },
-        buttonnStyle: {
-            marginRight: 20,
-        },
-        gridItemInButtonStyle: {
-            textAlign: "right",
-        },
-        pageNameStyle: {
-            marginBottom: 60,
-            marginTop: 50,
-        },
-        subjectStyle: {
-            marginBottom: 30,
-        },
-        inputStyle: {
-            marginBottom: 50,
-        },
-        inputFieldStyle: {
-            width: 700,
-        },
-    }),
-);
 
 const NewPost: FunctionComponent = () => {
-    const classes = useStyles();
+    const classes = postNewStyles();
     const router = useRouter();
     const [newPost, setNewPost] = useState<postCreateType | undefined>({title: '', content: ''});
 

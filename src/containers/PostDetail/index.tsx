@@ -1,33 +1,13 @@
-import { Button, createStyles, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Button, Grid, Typography } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import React, { FunctionComponent } from 'react';
+import { postDetailStyles } from '../../styles/pages/postDetail';
 import { postType } from '../../types/post';
 import { deleteItem } from '../../utils/axiosUtils';
 
 type Prop = {
     post: postType,
 };
-
-const postDetailStyles = makeStyles(() =>
-    createStyles({
-        btnGridStyle: {
-            textAlign: 'right',
-            marginTop: 100,
-            marginBottom: 100,
-        },
-        btnStyle: {
-            marginRight: 10,
-        },
-        contentGridStyle: {
-            marginTop: 120,
-            whiteSpace: 'pre-wrap',
-            wordWrap: 'break-word',
-        },
-        titleGridStyle: {
-            marginTop: 50,
-        },
-    }),
-);
 
 const PostDetail: FunctionComponent<Prop> = ({ post }) => {
     const router = useRouter();

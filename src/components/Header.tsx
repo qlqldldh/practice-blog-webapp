@@ -1,25 +1,12 @@
 import { Box, createStyles, Grid, Link, makeStyles, Typography } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import React, { FunctionComponent } from 'react';
+import { headerStyles } from '../styles/components/header';
 
-const useStyles = makeStyles(() =>
-    createStyles({
-        gridContainer: {
-            paddingLeft: 10,
-            paddingRight: 10,
-            marginBottom: 10,
-            border: 'solid 1px',
-        },
-        gridItem: {
-            textAlign: 'right',
-            paddingTop: 20,
-        },
-    }),
-);
 
 const Header: FunctionComponent = () => {
     const router =useRouter();
-    const classes = useStyles();
+    const classes = headerStyles();
 
     const handlePostsClick = () => {
         router.push('/posts');

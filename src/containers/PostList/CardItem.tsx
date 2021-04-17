@@ -1,28 +1,17 @@
-import { createStyles, Divider, Grid, makeStyles } from '@material-ui/core';
+import { Divider, Grid } from '@material-ui/core';
 import React, { FunctionComponent } from 'react';
 import { postType } from '../../types/post';
 // import Link from 'next/link';
 import Link from '@material-ui/core/Link';
 import { useRouter } from 'next/router';
+import { postListStyles } from '../../styles/pages/postList';
 
 type ItemProp = {
     post: postType,
 };
 
-const useStyles = makeStyles(() =>
-    createStyles({
-        gridCont: {
-            marginBottom: 30,
-            marginTop: 60,
-        },
-        divider: {
-            marginTop:20,
-        }
-    }),
-);
-
 const PostListCardItem: FunctionComponent<ItemProp> = ({ post }) => {
-    const classes = useStyles();
+    const classes = postListStyles();
     const router = useRouter();
     const {
         id,

@@ -1,22 +1,15 @@
 import { Box, Button, createStyles, makeStyles } from '@material-ui/core';
 import { useRouter } from 'next/router';
 import React, { FunctionComponent, useEffect, useState } from 'react';
+import { postListStyles } from '../../styles/pages/postList';
 import { postType } from '../../types/post';
 import { getList } from '../../utils/axiosUtils';
 import PostListCardList from './CardList';
 
-const useStyles = makeStyles(() =>
-    createStyles({
-        boxStyle: {
-            textAlign: 'right',
-            paddingRight: 5,
-        },
-    }),
-);
 
 const PostList: FunctionComponent = () => {
     const router = useRouter();
-    const classes = useStyles();
+    const classes = postListStyles();
     const [ posts, setPosts ] = useState<postType[]>([]);
 
     useEffect(() => {
@@ -38,7 +31,7 @@ const PostList: FunctionComponent = () => {
 
     return (
         <>
-            <Box className={classes.boxStyle}>
+            <Box className={classes.postAddButtonStyle}>
                 <Button color="primary" onClick={handleAddButtonClick}>Add New Post</Button>
             </Box>
             {posts.length === 0 ? 'empty' : <PostListCardList posts={posts} />}
